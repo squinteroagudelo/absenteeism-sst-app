@@ -19,13 +19,11 @@ return new class extends Migration
             $table->string('dx', 255);
             $table->unsignedBigInteger('dx_group_id');
             $table->unsignedBigInteger('dx_section_id');
-            $table->unsignedBigInteger('dx_origin_id');
             $table->timestamps();
 
             /* creating constraint - FK */
             $table->foreign('dx_group_id')->references('id')->on('dx_groups')->onDelete('cascade');
             $table->foreign('dx_section_id')->references('id')->on('ms_sections')->onDelete('cascade');
-            $table->foreign('dx_origin_id')->references('id')->on('dx_origins')->onDelete('cascade');
         });
     }
 
