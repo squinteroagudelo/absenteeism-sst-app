@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Ms_section extends Model
 {
+    protected $fillable = ['name'];
     use HasFactory;
 }

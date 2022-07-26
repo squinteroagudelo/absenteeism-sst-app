@@ -7,5 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incapacity_payment extends Model
 {
+    protected $fillable = [
+        'incapacity_id',
+        'paid_company',
+        'paid_eps',
+        'paid_arl',
+        'paid_afp'
+    ];
     use HasFactory;
 }

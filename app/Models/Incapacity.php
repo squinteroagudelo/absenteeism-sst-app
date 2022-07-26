@@ -7,5 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incapacity extends Model
 {
+    protected $fillable = [
+        'incapacity_type_id',
+        'employee_id',
+        'cie_10_id',
+        'start_day',
+        'end_day',
+        'incapacity_kind_id'
+    ];
     use HasFactory;
 }

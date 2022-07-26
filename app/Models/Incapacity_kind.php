@@ -7,5 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Incapacity_kind extends Model
 {
+    protected $fillable = ['name'];
     use HasFactory;
 }
