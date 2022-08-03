@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Home')
+@section('title', 'Dashboard')
 
 @section('content_header')
-    <h1 class="text-center">Dashboard</h1>
+    <h1 class="text-center">Ausentismo - Empresa SST</h1>
 @stop
 
 @section('content')
@@ -18,7 +18,7 @@
                         <div class="card-body p-2">
                             <p class="fa-4x font-weight-light m-0 text-center">500</p>
                         </div>
-                        <i class="fas fa-info-circle position-absolute m-1 cursor-pointer"></i>
+                        <i class="fas fa-info-circle position-absolute m-1 class_title"></i>
                     </div>
                 </div>
                 <div class="col mb-4 mb-md-0">
@@ -107,11 +107,23 @@
             display: block;
         }
 
-        .card-select-dashboard{
+        .card-select-dashboard {
             bottom: 0;
             left: 0;
         }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            background-color: rgba(13, 41, 63, 0.88);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+            background-color: rgba(56, 56, 56, 0.52);
+        }
     </style>
+
 @stop
 
 @section('js')
