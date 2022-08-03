@@ -13,7 +13,11 @@ class Incapacity extends Model
         'cie_10_id',
         'start_day',
         'end_day',
-        'incapacity_kind_id'
+        'incapacity_kind_id',
+        'paid_company',
+        'paid_eps',
+        'paid_arl',
+        'paid_afp',
     ];
     use HasFactory;
 }

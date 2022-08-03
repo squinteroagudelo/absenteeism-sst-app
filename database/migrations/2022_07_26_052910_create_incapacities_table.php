@@ -21,6 +21,10 @@ return new class extends Migration
             $table->date('start_day');
             $table->date('end_day');
             $table->unsignedBigInteger('incapacity_kind_id');
+            $table->decimal('paid_company')->default(0.0);
+            $table->decimal('paid_eps')->default(0.0);
+            $table->decimal('paid_arl')->default(0.0);
+            $table->decimal('paid_afp')->default(0.0);
             $table->timestamps();
 
             /* creating constraint - FK */
