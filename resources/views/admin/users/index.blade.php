@@ -63,7 +63,7 @@
             'responsive': true,
             'autoWidth': false,
             'serverSide': true,
-            'ajax': "{{ route('getU.datatable') }}",
+            'ajax': "{{ route('getUsers.datatable') }}",
             'columns': [
                 {data: 'id'},
                 {data: 'name'},

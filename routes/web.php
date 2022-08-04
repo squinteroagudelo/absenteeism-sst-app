@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -15,3 +16,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/', [HomeController::class, 'index'])->name('home');
+
+Route::get('/users', function () {
+    return datatables()
+        ->eloquent($user = User::query())
+        ->addColumn('actions', 'partials.actions')
+        ->rawColumns(['actions'])
+        ->toJson();
+})->name('getUsers.datatable');
