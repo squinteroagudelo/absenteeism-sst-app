@@ -1,4 +1,4 @@
-<button class="btn btn-sm btn-primary">
+<button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#userModal" aria-label="Editar">
     <i class="fas fa-edit"></i>
 </button>
 

@@ -20,7 +20,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/', [HomeController::class
 Route::get('/users', function () {
     return datatables()
         ->eloquent($user = User::query())
-        ->addColumn('actions', 'partials.actions')
+        ->addColumn('actions', 'admin.users.partials.actions')
         ->rawColumns(['actions'])
         ->toJson();
 })->name('getUsers.datatable');
