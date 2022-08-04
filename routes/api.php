@@ -16,9 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/users', function () {
+    $user = User::query();
     return datatables()
-        ->eloquent(User::query())
-        ->addColumn('actions', 'partials/actions')
+        ->eloquent($user)
+        ->addColumn('actions', 'partials.actions')
         ->rawColumns(['actions'])
         ->toJson();
-});
+})->name('getU.datatable');

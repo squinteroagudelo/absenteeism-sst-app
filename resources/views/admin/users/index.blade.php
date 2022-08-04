@@ -63,12 +63,18 @@
             'responsive': true,
             'autoWidth': false,
             'serverSide': true,
-            'ajax': "{{ url('api/users') }}",
+            'ajax': "{{ route('getU.datatable') }}",
             'columns': [
                 {data: 'id'},
                 {data: 'name'},
                 {data: 'email'},
                 {data: 'actions'}
+            ],
+            'columnDefs': [
+                {
+                    'sortable': false,
+                    'targets': [3]
+                },
             ],
             'language': {
                 sProcessing: "Procesando...",
