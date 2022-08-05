@@ -7,6 +7,7 @@
 @stop
 
 @section('content')
+    @include('sweetalert::alert')
     <div class="card">
         <div class="card-body">
             {{-- Creating new user btn --}}
