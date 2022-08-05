@@ -36,7 +36,8 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        User::create($request->all());
+        return redirect()->route('admin.users.index');
     }
 
     /**
@@ -81,6 +82,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        dd($user->getAttribute('name'));
+        dd($user);
     }
 }

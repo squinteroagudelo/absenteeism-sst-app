@@ -16,24 +16,23 @@
 
             {{-- New User Modal --}}
             <div class="modal fade" id="userModal" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="userModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
+                <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="userModalLabel">usuario</h5>
+                            <h5 class="modal-title" id="userModalLabel">Usuario</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
-                        <div class="modal-body">
-
+                        <div class="modal-body body-edit">
                             {!! Form::open(['route' => 'admin.users.store']) !!}
                                 @include('admin.users.partials.user-data')
                             {!! Form::close() !!}
-
                         </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn bg-navy">Guardar</button>
+                        <div class="modal-body body-create">
+                            {!! Form::open(['route' => 'admin.users.store']) !!}
+                                @include('admin.users.partials.user-data')
+                            {!! Form::close() !!}
                         </div>
                     </div>
                 </div>
@@ -41,7 +40,7 @@
 
             {{-- Users table --}}
             <table class="table table-bordered table-hover table-sm table-striped" id="userTable">
-                <thead class="text-center">
+                <thead class="bg-navy text-center">
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Correo electrónico</th>
@@ -54,7 +53,11 @@
 
 @section('css')
     <style>
-        #userTable tbody tr:last-child{
+        #userTable tbody td{
+            vertical-align: center;
+        }
+
+        #userTable tbody tr td:last-child, #userTable tbody tr td:first-child {
             text-align: center;
         }
     </style>
@@ -123,12 +126,21 @@
         $('#userModal').on('show.bs.modal', function (e) {
             e.currentTarget.querySelector('form').reset();
             let action = e.relatedTarget.ariaLabel;
-            e.currentTarget.querySelector('#userModalLabel').textContent = 'Usuario';
-            e.currentTarget.querySelector('#userModalLabel').textContent = `${action} ${e.currentTarget.querySelector('#userModalLabel').textContent}`;
+            e.currentTarget.querySelector('#userModalLabel').textContent = '';
+            e.currentTarget.querySelector('#userModalLabel').textContent = `${action} Usuario`;
             if (action === 'Editar') {
-                e.currentTarget.querySelector('#user-name').value = e.relatedTarget.parentNode.parentNode.children[1].textContent;
-                e.currentTarget.querySelector('#user-email').value = e.relatedTarget.parentNode.parentNode.children[2].textContent;
+                e.currentTarget.querySelector('#name').value = e.relatedTarget.parentNode.parentNode.children[1].textContent;
+                e.currentTarget.querySelector('#email').value = e.relatedTarget.parentNode.parentNode.children[2].textContent;
+                e.currentTarget.querySelector('.body-create').classList.add('d-none');
+                e.currentTarget.querySelector('.body-edit').classList.remove('d-none');
+            } else {
+                e.currentTarget.querySelector('.body-edit').classList.add('d-none');
+                e.currentTarget.querySelector('.body-create').classList.remove('d-none');
             }
-        })
+        });
+
+        /*$('#userModal').on('hidden.bs.modal', function (e) {
+            e.currentTarget.querySelector('form').reset();
+        });*/
     </script>
 @stop
