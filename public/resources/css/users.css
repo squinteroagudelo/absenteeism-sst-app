@@ -2,6 +2,21 @@ td, th {
     vertical-align: middle!important;
 }
 
+.filters th{
+    padding: 0!important;
+}
+
+.filters th:first-child{
+    width: 3rem;
+}
+
+.filters th input {
+    border-radius: .3rem!important;
+    text-align: center;
+    font-size: small;
+    width: 100%!important;
+}
+
 #userTable tbody tr td:last-child, #userTable tbody tr td:first-child {
     text-align: center;
 }

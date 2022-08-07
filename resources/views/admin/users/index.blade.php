@@ -44,10 +44,12 @@
             {{-- Users table --}}
             <table class="table table-bordered table-hover table-sm table-striped" id="userTable">
                 <thead class="bg-navy text-center">
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Correo electrónico</th>
-                    <th>Acciones</th>
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre</th>
+                        <th>Correo electrónico</th>
+                        <th>Acciones</th>
+                    </tr>
                 </thead>
             </table>
         </div>
@@ -62,6 +64,7 @@
     <script>
         $(document).ready(function () {
             let printCounter = 0;
+            $('#userTable thead tr').clone(true).addClass('filters').appendTo('#userTable thead');
             $('#userTable').DataTable({
                 // 'dom': '<"float-left"l>B<"float-right"f>t<"float-left"i><"d-flex justify-content-end"p><"clearfix">',
                 'dom': 'B<"float-left"l><"float-right"f>rt<"float-left"i><"d-flex justify-content-end"p><"clearfix">',
@@ -173,7 +176,7 @@
                                 'titleAttr': 'Mostrar / ocultar columnas',
                                 'className': 'bg-navy rounded w-auto',
                                 'collectionTitle': 'Visiblidad de columnas',
-                                'postfixButtons': [ 'colvisRestore' ],
+                                'postfixButtons': ['colvisRestore'],
                                 // Mostrar el número de columna
                                 /*'columnText': function ( dt, idx, title ) {
                                     return (idx+1)+': '+title;
@@ -195,6 +198,34 @@
                     [5, 10, 15, 30, 50, 100, 200, 500, 1000, -1],
                     [5, 10, 15, 30, 50, 100, 200, 500, 1000, "All"]
                 ],
+                orderCellsTop: true,
+                fixedHeader: true,
+                initComplete: function () {
+                    const api = this.api();
+                    // For each column
+                    api.columns().eq(0).each(function (colIdx) {
+                        // Set the header cell to contain the input element
+                        const cell = $('.filters th').eq($(api.column(colIdx).header()).index());
+                        const title = $(cell).text();
+                        $(cell).html('<input type="text" placeholder="' + title + '">');
+                        // On every keypress in this input
+                        $('input', $('.filters th').eq($(api.column(colIdx).header()).index()))
+                            .off('keyup change')
+                            .on('keyup change', function (e) {
+                                e.stopPropagation();
+                                // Get the search value
+                                $(this).attr('title', $(this).val());
+                                const regexr = '({search})'; //$(this).parents('th').find('select').val();
+                                const cursorPosition = this.selectionStart;
+                                // Search the column for that value
+                                api
+                                    .column(colIdx)
+                                    .search((this.value !== "") ? regexr.replace('{search}', '(((' + this.value + ')))') : "", this.value !== "", this.value === "")
+                                    .draw();
+                                $(this).focus()[0].setSelectionRange(cursorPosition, cursorPosition);
+                            });
+                    });
+                },
                 'language': {
                     'sProcessing': "Procesando...",
                     'sLengthMenu': "  _MENU_ registros",

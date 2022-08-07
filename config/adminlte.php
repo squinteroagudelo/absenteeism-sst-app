@@ -356,12 +356,12 @@ return [
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js',
+                    'location' => '//cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js',
                 ],
                 [
                     'type' => 'js',
                     'asset' => false,
-                    'location' => '//cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js',
+                    'location' => '//cdn.datatables.net/1.12.1/js/dataTables.bootstrap4.min.js',
                 ],
                 [
                     'type' => 'js',
@@ -404,6 +404,11 @@ return [
                     'location' => '//cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js',
                 ],
                 [
+                    'type' => 'js',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/fixedheader/3.2.4/js/dataTables.fixedHeader.min.js',
+                ],
+                [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css',
@@ -417,6 +422,11 @@ return [
                     'type' => 'css',
                     'asset' => false,
                     'location' => '//cdn.datatables.net/buttons/2.2.3/css/buttons.dataTables.min.css',
+                ],
+                [
+                    'type' => 'css',
+                    'asset' => false,
+                    'location' => '//cdn.datatables.net/fixedheader/3.2.4/css/fixedHeader.dataTables.min.css',
                 ],
             ],
         ],
